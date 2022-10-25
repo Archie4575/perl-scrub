@@ -1,9 +1,24 @@
 #!/usr/bin/env perl
+use strict;
 use warnings;
+
+# A perl script to scrub links to outbackmarine from exported csv file
+# Reads from stdin, prints verbose logs to stderr and prints new csv file to stdout
+# by Archer Fabling <https://github.com/Archie4575>
+# Version 1.1 26/10/2022
+#
+# Usage: 
+# ./scrub-links.pl < old.csv > new.csv
+# or to print tidy html and read in colour:
+# ./scrub-links.pl < old.csv > new.csv 2> log.html && bat log.html
+# note: requires tidy and bat
+#
+# Options:
+# -t    tidy html flag. requires tidy
 
 use Getopt::Std;
 
-%opts = ('t', 0);
+my %opts = ('t', 0);
 getopts('t', \%opts);
 
 # field indexes
