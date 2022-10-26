@@ -10,7 +10,7 @@ use warnings;
 # Usage: 
 # ./find_images.pl < data.csv > urls.txt
 # Usage with curl_resources.pl 
-# cat data.csv | ./find_images.pl | ./curl_images.pl /var/www/assets/
+# cat data.csv | ./find_images.pl | uniq | ./curl_images.pl /var/www/assets/
 
 # field indexes
 my $desc_fid = 12; # 13th column

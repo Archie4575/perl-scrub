@@ -12,7 +12,7 @@ use warnings;
 # Example:
 # ./curl_images.pl < urls.txt
 # Example with curl_resources.pl 
-# cat data.csv | ./find_images.pl | ./curl_images.pl /var/www/assets/
+# cat data.csv | ./find_images.pl | uniq | ./curl_images.pl /var/www/assets/
 
 # Arguments:
 # outputdir     directory to download images to, defaults to ./images/
