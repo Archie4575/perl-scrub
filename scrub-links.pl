@@ -22,12 +22,12 @@ my %opts = ('t', 0);
 getopts('t', \%opts);
 
 # field indexes
-my $desc_fid = 12; # 13th column
-my $name_fid = 4;  #  5th column
+my $desc_fid = 7; # 8th column
+my $name_fid = 0; # 1st column
 
 foreach my $line (<STDIN>) {
     
-    my @parts = ( $line =~ /((?:[^,]*"[^"]*")*[^,]*)(?:,|$)/gm ); 
+    my @parts = ( $line =~ /((?:[^,"]*"[^"]*")*[^,]*)(?:,|$)/gm ); 
     my $desc = $parts[$desc_fid];
     my $name = $parts[$name_fid];
 
@@ -35,11 +35,11 @@ foreach my $line (<STDIN>) {
     say STDERR "<!--- BEFORE --->";
     print_html($desc, $opts{'t'});
 
-    $line =~ s|<a.*?href="(?:https?://www\.outbackmarine\.com\.au\|/).*?".*?>(.*?)</a>|$1|g;
-    $line =~ s|(<img.*?src=")(?:https?://www\.outbackmarine\.com\.au)?(.*?".*?>)|$1$2|g;
+    $line =~ s|<a.*?href='(?:https?://www\.outbackmarine\.com\.au\|/).*?'.*?>(.*?)</a>|$1|g;
+    $line =~ s|(<img.*?src=')(?:https?://www\.outbackmarine\.com\.au)?(.*?'.*?>)|$1$2|g;
 
     say STDERR "<!--- AFTER --->";
-    $desc = ( $line =~ /((?:[^,]*"[^"]*")*[^,]*)(?:,|$)/gm )[$desc_fid]; 
+    $desc = ( $line =~ /((?:[^,"]*"[^"]*")*[^,]*)(?:,|$)/gm )[$desc_fid]; 
     print_html($desc, $opts{'t'});
 
     print $line;
