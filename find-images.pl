@@ -12,13 +12,10 @@ use warnings;
 # Usage with curl_resources.pl 
 # cat data.csv | ./find_images.pl | uniq | ./curl_images.pl /var/www/assets/
 
-# field indexes
-my $desc_fid = 12; # 13th column
 
 foreach my $line (<STDIN>) {
     
-    my $desc = ( $line =~ /((?:[^,]*"[^"]*")*[^,]*)(?:,|$)/gm )[$desc_fid]; 
-    my @hrefs = ( $desc =~ /<img.*?src="(?:https?:\/\/www\.outbackmarine\.com\.au)?(\/.*?)".*?>/gm );
+    my @hrefs = ( $line =~ /<img.*?src='(?:https?:\/\/www\.outbackmarine\.com\.au)?(\/.*?)'.*?>/gm );
 
     foreach my $href (@hrefs) {
         print("$href\n");

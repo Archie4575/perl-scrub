@@ -17,7 +17,7 @@ use warnings;
 # Arguments:
 # outputdir     directory to download images to, defaults to ./images/
 
-my $domain = "https://www.outbackmarine.com.au"
+my $domain = "https://www.outbackmarine.com.au";
 
 my $output_dir = "images";
 if ($#ARGV+1 == 1) {
@@ -29,9 +29,11 @@ system("mkdir -p $output_dir 2>/dev/null");
 my $count = 0;
 foreach my $partial (<STDIN>) {
     
+
+    chomp($partial);
     my $full = "$domain$partial";
-    print("Getting $full\n");
-    system("cd $output_dir; curl -O $full");
+    print("curl -O '$full'\n");
+    system("cd $output_dir; curl -O '$full'");
     $count += 1;
 }
 
